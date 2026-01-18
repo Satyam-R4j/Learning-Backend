@@ -7,3 +7,5 @@
         this.success = statusCode < 4000
     }
  }
+
+ export {ApiResponse}
