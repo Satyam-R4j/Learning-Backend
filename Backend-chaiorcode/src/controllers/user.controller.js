@@ -10,8 +10,10 @@ import {ApiResponse} from "../utils/ApiResponse.js";
 const registerUser = asyncHandler(async (req, res) =>
 {
     const { fullName, email, username, password } = req.body
-    console.log("email: ", email);
-    console.log("req.files: ", req.files); // Debug: Check if files are being received
+    console.log("=== Register Request ===");
+    console.log("Body:", { fullName, email, username, password });
+    console.log("Files received:", req.files);
+    console.log("Files keys:", req.files ? Object.keys(req.files) : "No files");
 
     if ([fullName, email, username, password].some((field) => field?.trim() === ""))
     {
@@ -28,8 +30,9 @@ const registerUser = asyncHandler(async (req, res) =>
     }
 
     const avatarLocalPath = req.files?.avatar?.[0]?.path
-    console.log("avatarLocalPath: ", avatarLocalPath); // Debug: Check avatar path
+    console.log("Avatar path:", avatarLocalPath);
     const coverImageLocalPath = req.files?.coverImage?.[0]?.path
+    console.log("Cover image path:", coverImageLocalPath);
 
     if (!avatarLocalPath)
     {
